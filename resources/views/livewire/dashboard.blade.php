@@ -47,8 +47,8 @@ layout('layouts.app');
     </div>
 
     <div class="container mx-auto px-4">
-        <div class="flex gap-x-8 -mx-2">
-            <div class="w-full md:w-2/3">
+        <div class="flex flex-wrap -mx-2">
+            <div class="w-full lg:w-2/3 px-4 mb-6">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <section>
                         <header>
@@ -84,7 +84,7 @@ layout('layouts.app');
                     </section>
                 </div>
             </div>
-            <div class="w-full md:w-1/3">
+            <div class="w-full lg:w-1/3 px-4">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                     <livewire:images />
                 </div>
