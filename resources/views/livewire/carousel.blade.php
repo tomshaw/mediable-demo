@@ -46,14 +46,13 @@ $change = function () {
 $remove = function () {
     $this->items = [];
 };
-
 ?>
 
 <div class="relative">
     <div class="flex flex-col mb-5">
         <div class="relative">
             @forelse ($items as $index => $item)
-            <img src="{{$item['url']}}" @class(['hidden', '!block'=> $index == $currentItem]) title="{{$item['title']}}" />
+            <img src="{{$item['url']}}" @class(['hidden select-none', '!block'=> $index == $currentItem]) alt="{{$item['title']}}" />
             @empty
             <img src="http://placehold.it/1280x720" />
             @endforelse
