@@ -8,7 +8,19 @@ state([
 ]);
 
 on(['mediable:on' => function ($files) {
-    $this->items = $files;
+    $imageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif', 'image/bmp'];
+
+    $images = [];
+    foreach ($files as $file) {
+        if (in_array($file['file_type'], $imageTypes)) {
+            $images[] = [
+                'url' => $file['file_url'],
+                'title' => $file['title']
+            ];
+        }
+    }
+
+    $this->items = $images;
 }]);
 
 $showPrevItem = function () {
@@ -39,14 +51,14 @@ $remove = function () {
 
 <div class="relative">
     <div class="flex flex-col mb-5">
-        <div class="thumbnail" id="carousel">
+        <div class="relative">
             @forelse ($items as $index => $item)
-            <img src="{{$item['file_url']}}" @class(['item hidden', '!block'=> $index == $currentItem])>
+            <img src="{{$item['url']}}" @class(['item hidden', '!block'=> $index == $currentItem]) title="{{$item['title']}}" />
             @empty
             <img src="http://placehold.it/1280x720">
             @endforelse
-            <div class="bg-blue-100 w-6 h-12 absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10 left-2.5" id="prev" @click="$wire.showPrevItem()"></div>
-            <div class="bg-blue-100 w-6 h-12 absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10 right-2.5" id="next" @click="$wire.showNextItem()"></div>
+            <div class="bg-black w-6 h-12 absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10 left-0 ml-2.5" id="prev" @click="$wire.showPrevItem()"></div>
+            <div class="bg-black w-6 h-12 absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10 right-0 mr-2.5" id="next" @click="$wire.showNextItem()"></div>
         </div>
     </div>
     <div class="mb-4">
