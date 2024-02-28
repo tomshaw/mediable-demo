@@ -2,14 +2,14 @@
 
 use function Livewire\Volt\{state, on};
 
+$imageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif', 'image/bmp'];
+
 state([
     'currentItem' => 0,
     'items' => []
 ]);
 
-on(['mediable:on' => function ($files) {
-    $imageTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/avif', 'image/bmp'];
-
+on(['mediable:on' => function ($files) use ($imageTypes) {
     $images = [];
     foreach ($files as $file) {
         if (in_array($file['file_type'], $imageTypes)) {
