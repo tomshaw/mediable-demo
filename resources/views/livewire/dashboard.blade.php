@@ -86,7 +86,7 @@ layout('layouts.app');
             </div>
             <div class="w-full lg:w-1/3 px-4">
                 <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                    <livewire:images />
+                    <livewire:carousel />
                 </div>
             </div>
         </div>
