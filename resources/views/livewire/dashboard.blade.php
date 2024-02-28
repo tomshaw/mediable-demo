@@ -26,7 +26,7 @@ layout('layouts.app');
 <div class="py-4 lg:py-6">
     <div class="container mx-auto px-4 mb-4">
         <div class="flex flex-wrap -mx-2">
-            <div class="w-full">
+            <div class="w-full px-4">
                 <div class="flex items-center justify-between">
                     <div class="flex flex-col justify-start">
                         <h1 class="flex flex-col justify-center text-lg text-gray-600 font-bold">Mediable Demonstration</h1>
