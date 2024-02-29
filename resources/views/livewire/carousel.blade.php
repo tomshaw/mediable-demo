@@ -9,7 +9,7 @@ state([
     'items' => []
 ]);
 
-on(['mediable:on' => function ($files) use ($imageTypes) {
+on(['mediable.on' => function ($files) use ($imageTypes) {
     $images = [];
     foreach ($files as $file) {
         if (in_array($file['file_type'], $imageTypes)) {
@@ -40,7 +40,7 @@ $showNextItem = function () {
 };
 
 $change = function () {
-    $this->dispatch('mediable:open');
+    $this->dispatch('mediable.open');
 };
 
 $remove = function () {
@@ -51,21 +51,23 @@ $remove = function () {
 <div class="relative">
     <div class="flex flex-col mb-5">
         <div class="relative">
+            @if (is_array($items) && count($items) > 1)
+            <div class="w-6 h-12 absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10 left-0 ml-2.5 flex items-center justify-center" @click="$wire.showPrevItem()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </div>
+            <div class="w-6 h-12 absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10 right-0 mr-2.5 flex items-center justify-center" @click="$wire.showNextItem()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+            </div>
+            @endif
             @forelse ($items as $index => $item)
             <img src="{{$item['url']}}" @class(['hidden select-none', '!block'=> $index == $currentItem]) alt="{{$item['title']}}" />
             @empty
             <img src="http://placehold.it/1280x720" />
             @endforelse
-            <div class="w-6 h-12 absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10 left-0 ml-2.5 flex items-center justify-center" id="prev" @click="$wire.showPrevItem()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
-            </div>
-            <div class="w-6 h-12 absolute top-1/2 transform -translate-y-1/2 cursor-pointer z-10 right-0 mr-2.5 flex items-center justify-center" id="next" @click="$wire.showNextItem()">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                </svg>
-            </div>
         </div>
     </div>
     <div class="mb-4">
