@@ -12,7 +12,7 @@ git clone git@github.com:tomshaw/mediable.git packages/mediable
 
 Run the included database migration.
 
-> This creates an attachments table that stores upload information.
+> This creates the attachments table.
 
 ```bash
 php artisan migrate
