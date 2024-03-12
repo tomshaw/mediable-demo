@@ -20,14 +20,5 @@ class UserTableSeeder extends Seeder
         ]);
         
         $user->assignRole('Admin');
-    
-        Profile::factory()->for($user)->create();
-    
-        $roles = ['Editor', 'Moderator', 'Manager', 'Guest', 'Subscriber', 'Contributor'];
-
-        User::factory()->count(199)->has(Profile::factory()->count(1))->create()->each(function ($user) use ($roles) {
-            $randomRoles = array_rand(array_flip($roles), rand(2, 3));
-            $user->assignRole(['Member', ...$randomRoles]);
-        });
     }
 }
